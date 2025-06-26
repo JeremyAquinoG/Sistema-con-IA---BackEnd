@@ -1,5 +1,37 @@
 const User = require('../models/user');
 
+
+// OBTENER PERFIL DEL USUARIO
+exports.obtenerPerfil = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const usuario = await User.findByPk(userId, {
+      attributes: [
+        'id',
+        'nombres',
+        'apellidos',
+        'tipo_documento',
+        'numero_documento',
+        'fecha_nacimiento',
+        'genero',
+        'telefono',
+        'direccion',
+        'ocupacion',
+        'email',
+        'username'
+      ]
+    });
+
+    if (!usuario) {
+      return res.status(404).json({ msg: 'Usuario no encontrado' });
+    }
+
+    res.status(200).json(usuario);
+  } catch (error) {
+    res.status(500).json({ msg: 'Error al obtener perfil.', error: error.message });
+  }
+};
+
 // ACTUALIZAR PERFIL (cuando ya existe)
 exports.actualizarPerfil = async (req, res) => {
   try {
@@ -84,4 +116,8 @@ exports.crearPerfil = async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: 'Error al crear perfil.', error: error.message });
   }
+
+  
+
+
 };
