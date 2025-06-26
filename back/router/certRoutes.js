@@ -29,4 +29,8 @@ Router.get("/certificado/:parametro", controller.getcertificado);
 Router.post("/guardar-extraidos", authMiddleware, upload.single('file'), controller.guardarExtraidos);
 Router.get("/mis-certificados", authMiddleware, controller.listarMisCertificados);
 
+// ✅ NUEVA RUTA: actualizar certificado por ID
+Router.put("/actualizar/:id", authMiddleware, upload.single('file'), controller.actualizarCertificado);
+
+
 module.exports = Router;

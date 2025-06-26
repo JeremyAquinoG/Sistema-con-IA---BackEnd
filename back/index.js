@@ -43,6 +43,7 @@ app.use('/api/files', fileRoutes);
 app.use('/api', logRoutes);
 app.use('/api/user', userRoutes); // o como prefieras el prefijo
 
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
@@ -60,7 +61,7 @@ const bootstrap = async () => {
   try {
     await db.authenticate();
     console.log("Inicio la base de datos");
-    await db.sync({ force: true });
+    await db.sync({ force: false });
     console.log("Tablas agregadas");
   } catch (error) {
     console.error("Error durante la sincronización o autenticación de la base de datos:", error);
