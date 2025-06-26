@@ -16,9 +16,9 @@ exports.obtenerPerfil = async (req, res) => {
         'genero',
         'telefono',
         'direccion',
-        'ocupacion',
-        'email',
-        'username'
+        'ocupacion'
+        //'email',
+        //'username'
       ]
     });
 
